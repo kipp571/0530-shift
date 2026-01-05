@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The 0530 Shift | 10-Week Plan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+</head>
+<body class="bg-slate-50 text-slate-900 font-inter">
+
+  <!-- NAV -->
+  <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto">
+    <div class="flex items-center gap-2">
+      <div class="w-10 h-10 clinical-blue rounded-full flex items-center justify-center text-white font-bold text-xs text-center leading-tight">0530<br>SHIFT</div>
+      <span class="font-bold text-xl tracking-tight text-blue-900 uppercase">The 0530 Shift</span>
+    </div>
+    <div class="hidden md:flex gap-6 text-sm font-semibold text-slate-600 uppercase">
+      <a href="index.html" class="hover:text-blue-700">Daily Drill</a>
+      <a href="archive.html" class="hover:text-blue-700">Archive</a>
+      <button id="logoutBtn" class="hover:text-red-600 font-bold">Logout</button>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="py-16 px-6 max-w-4xl mx-auto text-center">
+    <h1 class="text-5xl md:text-6xl font-bold mt-6 mb-4 text-slate-900 tracking-tight">0530 Shift: 10-Week Master Curriculum</h1>
+    <p class="text-lg text-slate-600 mb-8">High-yield plan to build clinical discipline, covering Med-Surg, Midwifery, Pediatrics, Forensic Nursing, Research, and Multimedia Health.</p>
+  </header>
+
+  <!-- 10-WEEK PLAN -->
+  <main class="max-w-4xl mx-auto px-6 mb-24">
+    <div class="glass-card border border-blue-100 rounded-3xl p-8 md:p-12 shadow-2xl">
+      <h2 class="text-2xl font-bold text-blue-900 mb-6">Weeks Overview</h2>
+      
+      <ul class="space-y-6">
+        <li>
+          <h3 class="font-bold text-xl">Week 1: Foundations & Maternal-Fetal</h3>
+          <ul class="list-disc list-inside text-slate-700">
+            <li>Mon: Communication (SBAR)</li>
+            <li>Tue: Pharma (Magnesium Sulfate / Preeclampsia)</li>
+            <li>Wed: GK (Blue Zones & Longevity)</li>
+            <li>Thu: Midwifery (Leopold’s Maneuvers)</li>
+            <li>Fri: Gyn (Cervical Cancer & HPV)</li>
+          </ul>
+        </li>
+
+        <li>
+          <h3 class="font-bold text-xl">Week 2: Cardiac & Forensic Link</h3>
+          <ul class="list-disc list-inside text-slate-700">
+            <li>Mon: Med-Surg (ECG Basics)</li>
+            <li>Tue: Forensic (ER: Evidence Preservation)</li>
+            <li>Wed: GK (History of the Stethoscope)</li>
+            <li>Thu: Med-Surg (Myocardial Infarction: MONA Protocol)</li>
+            <li>Fri: Forensic (Legal vs. Clinical Charting)</li>
+          </ul>
+        </li>
+
+        <li>
+          <h3 class="font-bold text-xl">Week 3: Pediatrics & Childhood Emergencies</h3>
+          <ul class="list-disc list-inside text-slate-700">
+            <li>Mon: Growth & Development (Erikson’s Stages)</li>
+            <li>Tue: Dehydrated Child: Fluid Bolus Calculation</li>
+            <li>Wed: Multimedia (Video Patient Education)</li>
+            <li>Thu: Respiratory Distress: Retractions & Grunting</li>
+            <li>Fri: GK (Tele-pediatrics)</li>
+          </ul>
+        </li>
+
+        <li>
+          <h3 class="font-bold text-xl">Week 4: Midwifery & Gynaecology Deep Dive</h3>
+          <ul class="list-disc list-inside text-slate-700">
+            <li>Mon: Stages of Labor (Latent vs. Active)</li>
+            <li>Tue: Endometriosis & Patient Advocacy</li>
+            <li>Wed: Medical Ethics (Tuskegee Study)</li>
+            <li>Thu: Postpartum Hemorrhage (Fundal Massage & Oxytocin)</li>
+            <li>Fri: PCOS: Metabolic & Hormonal Nursing Care</li>
+          </ul>
+        </li>
+
+        <li>
+          <h3 class="font-bold text-xl">Week 5-10: Med-Surg, Research, Forensic, Multimedia & Integration</h3>
+          <ul class="list-disc list-inside text-slate-700">
+            <li>Week 5: Research & EBP</li>
+            <li>Week 6: Med-Surg Mastery (Renal & Fluids)</li>
+            <li>Week 7: Forensic Nursing & Trauma</li>
+            <li>Week 8: Pediatrics & Health Multimedia</li>
+            <li>Week 9: Midwifery & High-Risk Pregnancy</li>
+            <li>Week 10: Integration & Final Shift</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="text-center pb-12 text-slate-400 text-sm">
+    &copy; 2026 The 0530 Shift | Built for the Future of Nursing
+  </footer>
+
+  <script>
+    // ===== FIREBASE CONFIG =====
+    const firebaseConfig = {
+      apiKey: "AIzaSyBE6xDKa2GKqftFWrj4ZzE3cOgOVJCC5KI",
+      authDomain: "http://shift-2face.firebaseapp.com",
+      databaseURL: "https://shift-2face.firebaseio.com",
+      projectId: "shift-2face",
+      storageBucket: "shift-2face.appspot.com",
+      messagingSenderId: "516693996312",
+      appId: "1:516693996312:web:4b9ad6bedaa748abdee46d",
+  measurementId: "G-42HBJ71GKB"
+    };
+    firebase.initializeApp(firebaseConfig);
+ 
+    const auth = firebase.auth();
+
+    // Redirect to login if not signed in
+    auth.onAuthStateChanged(user => {
+      if(!user) window.location.href = "login.html";
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click',()=>{
+      auth.signOut();
+      localStorage.removeItem('loggedIn');
+      window.location.href="login.html";
+    });
+  </script>
+
+</body>
+</html>

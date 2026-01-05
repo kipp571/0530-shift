@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The 0530 Shift | Archive</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-inter">
+
+  <!-- NAV -->
+  <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto">
+    <div class="flex items-center gap-2">
+      <div class="w-10 h-10 clinical-blue rounded-full flex items-center justify-center text-white font-bold text-xs text-center leading-tight">0530<br>SHIFT</div>
+      <span class="font-bold text-xl tracking-tight text-blue-900 uppercase">The 0530 Shift</span>
+    </div>
+    <div class="hidden md:flex gap-6 text-sm font-semibold text-slate-600 uppercase">
+      <a href="index.html" class="hover:text-blue-700">Daily Drill</a>
+      <a href="plan.html" class="hover:text-blue-700">10-Week Plan</a>
+      <button id="logoutBtn" class="hover:text-red-600 font-bold">Logout</button>
+    </div>
+  </nav>
+
+  <header class="py-16 px-6 max-w-4xl mx-auto text-center">
+    <h1 class="text-5xl md:text-6xl font-bold mt-6 mb-4 text-slate-900 tracking-tight">Your Completed Shifts</h1>
+    <p class="text-lg text-slate-600 mb-8">View your daily drill history and track your streak progress.</p>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 mb-24">
+    <div class="glass-card border border-blue-100 rounded-3xl p-8 md:p-12 shadow-2xl">
+      <h2 class="text-2xl font-bold text-blue-900 mb-6">Archive</h2>
+      <ul id="archiveList" class="list-disc list-inside text-slate-700 space-y-2">
+        <!-- Completed shifts will populate here -->
+      </ul>
+    </div>
+  </main>
+
+  <footer class="text-center pb-12 text-slate-400 text-sm">
+    &copy; 2026 The 0530 Shift | Built for the Future of Nursing
+  </footer>
+
+  <script>
+    // ===== FIREBASE CONFIG =====
+    const firebaseConfig = {
+      apiKey: "AIzaSyBE6xDKa2GKqftFWrj4ZzE3cOgOVJCC5KI",
+      authDomain: "http://shift-2face.firebaseapp.com",
+      databaseURL: "https://shift-2face.firebaseio.com",
+      projectId: "shift-2face",
+      storageBucket: "shift-2face.appspot.com",
+      messagingSenderId: "516693996312",
+      appId: "1:516693996312:web:4b9ad6bedaa748abdee46d",
+  measurementId: "G-42HBJ71GKB"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+    const db = firebase.database();
+
+    const archiveList = document.getElementById('archiveList');
+
+    // Redirect if not logged in
+    auth.onAuthStateChanged(user=>{
+      if(!user) window.location.href="login.html";
+
+      else{
+        // Populate archive
+        db.ref('users/'+user.uid+'/completedDays').once('value',snap=>{
+          const data = snap.val() || [];
+          archiveList.innerHTML = '';
+          data.forEach(day=>{
+            const li = document.createElement('li');
+            li.textContent = day;
+            archiveList.appendChild(li);
+          });
+        });
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click',()=>{
+      auth.signOut();
+      localStorage.removeItem('loggedIn');
+      window.location.href="login.html";
+    });
+  </script>
+
+</body>
+</html>

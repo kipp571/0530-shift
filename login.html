@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>0530 Shift | Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f0f4f8; }
+    .glass-card { background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); }
+  </style>
+</head>
+<body class="flex justify-center items-center h-screen">
+
+  <div class="glass-card p-8 rounded-3xl shadow-xl w-96">
+    <h1 class="text-2xl font-bold mb-6 text-center text-blue-900">0530 Shift Login</h1>
+
+    <label class="block text-sm font-semibold mt-4">Email</label>
+    <input id="authEmail" type="email" placeholder="your email" class="w-full p-3 rounded-md border border-gray-300 mt-1">
+
+    <label class="block text-sm font-semibold mt-4">Password</label>
+    <input id="authPassword" type="password" placeholder="password" class="w-full p-3 rounded-md border border-gray-300 mt-1">
+
+    <button id="loginBtn" class="w-full bg-blue-700 text-white p-3 rounded-lg mt-6 font-bold hover:opacity-90">Login</button>
+    <button id="signupBtn" class="w-full bg-green-600 text-white p-3 rounded-lg mt-4 font-bold hover:opacity-90">Sign Up</button>
+
+    <button id="resetPasswordBtn" class="w-full text-blue-600 underline mt-4 text-sm">Forgot password?</button>
+    <p id="resetMsg" class="text-sm mt-2 text-red-600"></p>
+
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <!-- Firebase Config -->
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyBE6xDKa2GKqftFWrj4ZzE3cOgOVJCC5KI",
+      authDomain: "http://shift-2face.firebaseapp.com",
+      databaseURL: "https://shift-2face.firebaseio.com",
+      projectId: "shift-2face",
+      storageBucket: "shift-2face.appspot.com",
+      messagingSenderId: "516693996312",
+      appId: "1:516693996312:web:4b9ad6bedaa748abdee46d",
+  measurementId: "G-42HBJ71GKB"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  </script>
+
+  <!-- Main JS -->
+  <script src="shift.js"></script>
+</body>
+</html>
